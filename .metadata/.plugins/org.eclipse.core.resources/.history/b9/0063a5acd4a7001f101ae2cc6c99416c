@@ -1,0 +1,31 @@
+package com.demo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.model.Employee;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        Configuration con=new Configuration().configure();
+        SessionFactory sf= con.buildSessionFactory();
+        Session session=sf.openSession();
+        Transaction tx= session.beginTransaction();
+        
+        Employee e= new Employee();
+        /*e.setEname("Ram Yadhav"); //insert operation
+        e.setEcompany("IFFC");
+        e.setEdesignation(" web developer");
+        e.setEsalary(90000);*/
+        
+        e.setEid(5);
+        session.delete(e);
+        tx.commit();
+        session.close();
+        
+    }
+}
